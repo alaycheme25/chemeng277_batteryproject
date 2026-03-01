@@ -64,8 +64,9 @@ You can obtain an API key by signing into Materials Project and going to your da
 
 To extract only a subset of materials based on `working_ion`, change the `working_ion` by adding or removing working ions from the list. To change the extracted datasets, change the `fields` list by adding or subtracting available dataset names. See the [Materials Project API List](https://api.materialsproject.org/docs#/Materials%20Summary) for additional details on available datasets from Materials Project.  
 ## Contact
+
 For inquiries regarding the project or bugs in our code, feel free to email us at:
--
+
 - Allen Qiang, aqiang@stanford.edu
 - 
 Additionally, don't hestitate to open up issues for this repository!

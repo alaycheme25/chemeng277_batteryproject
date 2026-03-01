@@ -56,7 +56,9 @@ Run `machine_learning.ipynb` to:
 To change what datasets are used to train the models, change `Download_from_MP_API_updated.ipynb` to scrape different data from Materials Project. To ensure proper functionality of `Download_from_MP_API_updated.ipynb`, please change the following variable definition in cell 1 to your API key:
 ```
 API_KEY = "YOUR API KEY"
-```. You can obtain an API key by signing into Materials Project and going to your dashboard, which will have your public API key displayed.
+```.
+
+You can obtain an API key by signing into Materials Project and going to your dashboard, which will have your public API key displayed.
 
 To extract only a subset of materials based on `working_ion`, change the `working_ion` by adding or removing working ions from the list. To change the extracted datasets, change the `fields` list by adding or subtracting available dataset names. See the [Materials Project API List](https://api.materialsproject.org/docs#/Materials%20Summary) for additional details on available datasets from Materials Project.  
 ## Contact

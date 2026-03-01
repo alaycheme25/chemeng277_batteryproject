@@ -28,9 +28,9 @@ Training data is obtained from the [Materials Project](https://next-gen.material
 `Download_from_MP_API_updated.ipynb`. The first 6 columns are for battery categorization via working ion, elements, formula charge, etc. Columns 7-14 are scraped from Materials Projeect and are available features for performance estimation. 
 
 However, to reduce the number of features in our model which may cause overfitting, we decided to combine features from Materials Project into more intuitive desciptors: 
-- `Electrode_density`: `capacity_vol`/`capacity_gravimetric`.
-- `Energy_density`: `Electrode_density`*|`Energy_gravimetric`|
-- `Battery_cost_per_L`: `Energy_density`*Working_ion_cost_per_kWh`/1000
+- `Electrode_density`: capacity_vol/capacity_gravimetric
+- `Energy_density`: Electrode_density*|Energy_gravimetric|
+- `Battery_cost_per_L`: Energy_density*Working_ion_cost_per_kWh/1000
   
 ### Testing data 
 **WIP, add when we get the training data set**

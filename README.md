@@ -55,9 +55,10 @@ Run `machine_learning.ipynb` to:
 
 ### Changing what datasets to use for training 
 To change what datasets are used to train the models, change `Download_from_MP_API_updated.ipynb` to scrape different data from Materials Project. To ensure proper functionality of `Download_from_MP_API_updated.ipynb`, please change the following variable definition in cell 1 to your API key:
-```
+
+````
 API_KEY = "YOUR API KEY"
-```.
+````
 
 You can obtain an API key by signing into Materials Project and going to your dashboard, which will have your public API key displayed.
 

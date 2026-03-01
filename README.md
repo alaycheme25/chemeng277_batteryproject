@@ -38,7 +38,7 @@ However, to reduce the number of features in our model which may cause overfitti
 ### Testing data 
 **WIP, add when we get the training data set**
 
-## Training and using the model: 
+## Training and using the model
 Machine learning and usage occurs in `machine_learning.ipynb`. 
 Before running, the following line of code in cell $3$ needs to be changed to access the [training data](#Training data) on your device:
 ```
@@ -52,7 +52,8 @@ Run `machine_learning.ipynb` to:
 - Evaluates models by comparing $R^2$ values, mean average error, and mean standard error.
 - Applies trained model to test dataset and returns best material based on score. 
 ## Customization
-###Changing what datasets to use for training 
+
+### Changing what datasets to use for training 
 To change what datasets are used to train the models, change `Download_from_MP_API_updated.ipynb` to scrape different data from Materials Project. To ensure proper functionality of `Download_from_MP_API_updated.ipynb`, please change the following variable definition in cell 1 to your API key:
 ```
 API_KEY = "YOUR API KEY"

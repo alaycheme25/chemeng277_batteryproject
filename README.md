@@ -2,7 +2,9 @@
 
 The global effort to reduce global emissions relies on the research for better energy storage options. Batteries which store electrical energy are especially important, as green power sources like solar or wind may not be generating electricity 100% of the time. Therefore, optimizing battery performance is key to transitioning towards green power.
 
-This project uses ridge and elasticnet regression to identify and predict the effective lifetime of solid-state batteries.  The model is trained on data from [Materials Project](https://next-gen.materialsproject.org/) with without the following features: bandgap energy, crystal volume, formation energy, and stability.The cost feature is estimated using the working ion cost per hour for the battery and scaling it by the energy density of the battery. 
+This project uses ridge and elasticnet regression to identify and predict the effective lifetime of solid-state batteries. The model is trained on data from [Materials Project](https://next-gen.materialsproject.org/) to predict a battery score, which correlates to the battery performance. The input datasets has the following features removed: bandgap energy, crystal volume, formation energy, and stability. Additional features like battery cost per liter, energy density, energy volume, and capacity volume are also dropped since they correlate with features used for scoring.
+
+Our testing data composes of bandgap energy, formation energy, and material densities (DFT-derived properties of a battery), and our model predicts battery performance by checking if the battery score from the new datasets is greater then a threshold $\alpha$.
 
 ## Setup
 Our machine-learning model is trained on data from [Materials Project](https://next-gen.materialsproject.org/), so you are not required to obtain your own data. However, the model requires certain packages to be installed to function properly. Additional instructions for using the data scrapers and building your own datasets can be found in [Link Text](#Customization)
@@ -23,7 +25,7 @@ conda install -c conda-forge numpy, matplotlib, pandas, paretoset, pymatgen, sci
 
 ## Usage
 ### Training data
-`MATSCI_176_Project_Data.xlsx` **CHANGE WHEN NECESSARY**
+`MATSCI_176_Project_Data.xlsx`
 
 Training data is obtained from the [Materials Project](https://next-gen.materialsproject.org/) by running 
 `Download_from_MP_API_updated.ipynb`. The first 6 columns are for battery categorization via working ion, elements, formula charge, etc. Columns 7-14 are scraped from Materials Projeect and are available features for performance estimation. 

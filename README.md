@@ -2,7 +2,7 @@
 
 The global effort to reduce global emissions relies on the research for better energy storage options. Batteries which store electrical energy are especially important, as green power sources like solar or wind may not be generating electricity 100% of the time. Therefore, optimizing battery performance is key to transitioning towards green power.
 
-This project uses ridge and elasticnet regression to identify and predict the effective lifetime of solid-state batteries. The model is trained on data from [Materials Project](https://next-gen.materialsproject.org/) to predict a battery score, which correlates to the battery performance. The input datasets has the following features removed: bandgap energy, crystal volume, formation energy, and stability. Additional features like battery cost per liter, energy density, energy volume, and capacity volume are also dropped since they correlate with features used for scoring.
+This project uses ridge and elasticnet regression to identify and predict the effective energy density of solid-state batteries. The model is trained on data from [Materials Project](https://next-gen.materialsproject.org/) to predict an energy density for proposed materials. The input datasets has the following features removed: bandgap energy, crystal volume, formation energy, and stability. Additional features like battery cost per liter, energy density, energy volume, and capacity volume are also dropped since they correlate with features used for scoring.
 
 Our testing data composes of bandgap energy, formation energy, and material densities (DFT-derived properties of a battery), and our model predicts battery performance by checking if the battery score from the new datasets is greater then a threshold $\alpha$.
 
@@ -63,6 +63,7 @@ API_KEY = "YOUR API KEY"
 You can obtain an API key by signing into Materials Project and going to your dashboard, which will have your public API key displayed.
 
 To extract only a subset of materials based on `working_ion`, change the `working_ion` by adding or removing working ions from the list. To change the extracted datasets, change the `fields` list by adding or subtracting available dataset names. See the [Materials Project API List](https://api.materialsproject.org/docs#/Materials%20Summary) for additional details on available datasets from Materials Project.  
+
 ## Contact
 
 For inquiries regarding the project or bugs in our code, feel free to email us at:

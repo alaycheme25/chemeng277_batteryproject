@@ -2,7 +2,7 @@
 
 The global effort to reduce global emissions relies on the research for better energy storage options. Batteries which store electrical energy are especially important, as green power sources like solar or wind may not be generating electricity 100% of the time. Therefore, optimizing battery performance is key to transitioning towards green power.
 
-This project uses ridge and elasticnet regression to identify and predict the effective energy density of solid-state batteries. The model is trained on data from [Materials Project](https://next-gen.materialsproject.org/) to predict an energy density for proposed materials. The input datasets has the following features removed: bandgap energy, crystal volume, formation energy, and stability. Additional features like battery cost per liter, energy density, energy volume, and capacity volume are also dropped since they correlate with features used for scoring.
+This project uses ridge and elasticnet regression to identify and predict the effective gravimetric energy density of solid-state batteries. The model is trained on data from [Materials Project](https://next-gen.materialsproject.org/) to predict the gravimetric energy density for proposed battery materials. The input dataset has the following features dropped to avoid direct correlation with gravimetric energy: battery cost per liter, volumetric energy density, electrode density, stability charge, and volumetric capacity. 
 
 Our testing data composes of bandgap energy, formation energy, and material densities (DFT-derived properties of a battery), and our model predicts battery performance by checking if the battery score from the new datasets is greater then a threshold $\alpha$.
 

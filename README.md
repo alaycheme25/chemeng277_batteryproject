@@ -1,8 +1,10 @@
-# Machine Learning-Driven Prediction and Optimization of Lifetime Performance and Cost in Solid-State Batteries
+# A Physics-Informed Machine Learning-Framework for Prediction and Optimization of Performance in Solid-State Batteries
 
 The global effort to reduce global emissions relies on the research for better energy storage options. Batteries which store electrical energy are especially important, as green power sources like solar or wind may not be generating electricity 100% of the time. Therefore, optimizing battery performance is key to transitioning towards green power.
 
-This project uses ridge and elasticnet regression to identify and predict the effective gravimetric energy density of solid-state batteries. The model is trained on data from [Materials Project](https://next-gen.materialsproject.org/) to predict the gravimetric energy density for proposed battery materials. The input dataset has the following features dropped to avoid direct correlation with gravimetric energy: battery cost per liter, volumetric energy density, electrode density, stability charge, and volumetric capacity. 
+This project uses ridge, elasticnet regression, and xgBoost Gradient Boosting to identify and predict the effective gravimetric energy density (GED) of solid-state batteries. The data was obtained from Materials Project [Materials Project](https://next-gen.materialsproject.org/) database using the api.client Python package. The model is trained on this data to predict the gravimetric energy density for proposed battery materials and filtering on the materials that have Li, Na, Mg, and Ca as working ion. 
+
+Our training datasets consists of the following features: max_delta_volume, average_voltage, capacity_grav, stability_discharge, material_density, formation_energy_per_atom, band_gap, lattice constants ('a', 'b', 'c'). The input dataset has the following features dropped to avoid direct correlation with gravimetric energy: battery working ion cost per kWh, volumetric energy density, gravitational energy, electrode density, stability charge, volumetric energy, and volumetric capacity.
 
 Our testing data composes of bandgap energy, formation energy, and material densities (DFT-derived properties of a battery), and our model predicts battery performance by checking if the battery score from the new datasets is greater then a threshold $\alpha$.
 

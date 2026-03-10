@@ -2,11 +2,12 @@
 
 The global effort to reduce global emissions relies on the research for better energy storage options. Batteries which store electrical energy are especially important, as green power sources like solar or wind may not be generating electricity 100% of the time. Therefore, optimizing battery performance is key to transitioning towards green power.
 
-This project uses Ridge and Elasticnet regression in addition to XG-Boost to identify and predict the effective gravimetric energy density (GED) of solid-state batteries. The data was obtained from Materials Project [Materials Project](https://next-gen.materialsproject.org/) database using the api.client Python package. The model is trained on this data to predict the gravimetric energy density for proposed battery materials and filtering on the materials that have Li, Na, Mg, and Ca as working ion. 
+This project uses Ridge and Elasticnet regression in addition to XG-Boost to identify and predict the effective gravimetric energy density (GED) of solid-state batteries. The data was obtained from Materials Project [Materials Project](https://next-gen.materialsproject.org/) database using the api.client Python package. The model is trained on this data to predict the gravimetric energy density for proposed battery materials and filtering on the materials that have Li, Na, Mg, Ca, and Ag as working ion. 
 
 Our training datasets consists of the following features: max_delta_volume, average_voltage, capacity_grav, stability_discharge, material_density, formation_energy_per_atom, band_gap, lattice constants ('a', 'b', 'c'). The input dataset has the following features dropped to avoid direct correlation with gravimetric energy: battery working ion cost per kWh, volumetric energy density, gravitational energy, electrode density, stability charge, volumetric energy, and volumetric capacity.
 
-Our testing data composes of DFT-derived features: max delta volume, average voltage, gravimetric capacity, stability discharge, material density, formation energy per atom, energy bandgap, and lattice constants ('a', 'b', 'c')
+Our testing data composes of DFT-derived features: max delta volume, average voltage, gravimetric capacity, stability discharge, material density, formation energy per atom, energy bandgap, and lattice constants ('a', 'b', 'c').
+
 ## Setup
 Our machine-learning model is trained on data from [Materials Project](https://next-gen.materialsproject.org/), so you are not required to obtain your own data. However, the model requires certain packages to be installed to function properly. Additional instructions for using the data scrapers and building your own datasets can be found in [Link Text](#Customization)
 
@@ -34,7 +35,7 @@ Training data is obtained from the [Materials Project](https://next-gen.material
 The final training dataset consists of the following features: 'max_delta_volume', 'average_voltage', 'capacity_grav', 'stability_discharge', 'material_density', 'formation_energy_per_atom', 'band_gap', 'a', 'b', 'c'.
 
 ### Testing data 
-The training dataset is obtained from materials project 
+The testing dataset was obtained by splicing together gravimetric capacity, gravimetric energy density, voltage, and maximum change in volume data from **THIS PAPER** and the materials project database. A subset of the paper's samples were chosen to use as testing data. The remaining features present in the training data were obtained by scraping the features from Materials Project using the chosen samples' Materials Project ID.
 
 ## Training and using the model
 Machine learning and usage occurs in `machine_learning.ipynb`. 

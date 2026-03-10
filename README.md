@@ -64,6 +64,7 @@ To extract only a subset of materials based on `working_ion`, change the `workin
 
 For inquiries regarding the project or bugs in our code, feel free to email us at:
 
+- Nandagopal Pradeep Kumar, nandu02@stanford.edu
 - Allen Qiang, aqiang@stanford.edu
-- 
+- Alay Shah, alayshah@stanford.edu
 Additionally, don't hestitate to open up issues for this repository!

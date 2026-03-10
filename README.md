@@ -15,12 +15,12 @@ pip install -r requirements.txt
 ```
 or if you don't want to download `requirements.txt`:
 ```
-pip install numpy, matplotlib, pandas, paretoset, pymatgen, scikit-learn, scipy, sympy, mp_api
+pip install numpy, matplotlib, pandas, paretoset, pymatgen, scikit-learn, scipy, sympy, mp_api, xgboost
 ```
 
 For conda users, run:
 ```
-conda install -c conda-forge numpy, matplotlib, pandas, paretoset, pymatgen, scikit-learn, scipy, sympy, mp_api
+conda install -c conda-forge numpy, matplotlib, pandas, paretoset, pymatgen, scikit-learn, scipy, sympy, mp_api, xgboost
 ```
 
 ## Usage

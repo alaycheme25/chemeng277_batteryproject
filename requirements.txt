@@ -12,5 +12,6 @@ pymatgen-io-validation==0.1.2
 scikit-learn==1.8.0
 scipy==1.17.0
 sympy==1.14.0
+xgboost==3.2.0
 
 

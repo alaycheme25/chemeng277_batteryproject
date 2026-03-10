@@ -6,8 +6,7 @@ This project uses ridge, elasticnet regression, and xgBoost Gradient Boosting to
 
 Our training datasets consists of the following features: max_delta_volume, average_voltage, capacity_grav, stability_discharge, material_density, formation_energy_per_atom, band_gap, lattice constants ('a', 'b', 'c'). The input dataset has the following features dropped to avoid direct correlation with gravimetric energy: battery working ion cost per kWh, volumetric energy density, gravitational energy, electrode density, stability charge, volumetric energy, and volumetric capacity.
 
-Our testing data composes of bandgap energy, formation energy, and material densities (DFT-derived properties of a battery), and our model predicts battery performance by checking if the battery score from the new datasets is greater then a threshold $\alpha$.
-
+Our testing data composes of DFT-derived features: max delta volume, average voltage, gravimetric capacity, stability discharge, material density, formation energy per atom, energy bandgap, and lattice constants ('a', 'b', 'c')
 ## Setup
 Our machine-learning model is trained on data from [Materials Project](https://next-gen.materialsproject.org/), so you are not required to obtain your own data. However, the model requires certain packages to be installed to function properly. Additional instructions for using the data scrapers and building your own datasets can be found in [Link Text](#Customization)
 
@@ -30,15 +29,12 @@ conda install -c conda-forge numpy, matplotlib, pandas, paretoset, pymatgen, sci
 `MATSCI_176_Project_Data.xlsx`
 
 Training data is obtained from the [Materials Project](https://next-gen.materialsproject.org/) by running 
-`Download_from_MP_API_updated.ipynb`. The first 6 columns are for battery categorization via working ion, elements, formula charge, etc. Columns 7-14 are scraped from Materials Projeect and are available features for performance estimation. 
+`Download_from_MP_API_updated.ipynb`. The first 6 columns are for battery categorization via working ion, elements, formula charge, etc. Columns 7-14 are scraped from Materials Projeect and are available features for performance estimation. An additional three columns corresponding to the lattice constants are added to the training dataset, which are obtained from the structure column.
 
-However, to reduce the number of features in our model which may cause overfitting, we decided to combine features from Materials Project into more intuitive desciptors: 
-- `Electrode_density`: capacity_vol/capacity_gravimetric
-- `Energy_density`: Electrode_density*|Energy_gravimetric|
-- `Battery_cost_per_L`: Energy_density*Working_ion_cost_per_kWh/1000
-  
+The final training dataset consists of the following features: 'max_delta_volume', 'average_voltage', 'capacity_grav', 'stability_discharge', 'material_density', 'formation_energy_per_atom', 'band_gap', 'a', 'b', 'c'.
+
 ### Testing data 
-**WIP, add when we get the training data set**
+The training dataset is obtained from materials project 
 
 ## Training and using the model
 Machine learning and usage occurs in `machine_learning.ipynb`. 
@@ -48,11 +44,9 @@ pdata = pd.read_excel("MATSCI_176_Project_Data.xlsx")
 ```
 Run `machine_learning.ipynb` to:
 - Clean training data by removing all nan, empty, or invalid samples. Subsequently, normalizes remaining samples.
-- Compare different dimensionality reduction techniques (PCA, pareto front analysis, etc.)
-- Trains models using ridge and elsatic net regression.
-- Determines battery score based on chosen features.
-- Evaluates models by comparing $R^2$ values, mean average error, and mean standard error.
-- Applies trained model to test dataset and returns best material based on score. 
+- Trains our Ridge, ElasticNet, and XG-Boost models.
+- Evaluates models by comparing $R^2$ values, mean average error, and the mean standard error from training dataset.
+- Applies trained models to test dataset and returns predicted gravimetric energy densities as well as feature weights and model evaluation metrics from test dataset.
 ## Customization
 
 ### Changing what datasets to use for training 

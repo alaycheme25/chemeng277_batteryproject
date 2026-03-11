@@ -41,7 +41,7 @@ Testing dataset is obtained by splicing together gravimetric capacity, gravimetr
 
 ## Training and using the model
 Model training and testing occurs in `machine_learning.ipynb`. 
-Before running, confirm the following lines of code in cell $3$ are present for the program to access the [training data](#Training data) and the [testing data](#Testing data) on your device:
+Before running, confirm the following lines of code in cell $2$ are present for the program to access the [training data](#Training data) and the [testing data](#Testing data) on your device:
 ```
 pdata = pd.read_excel("MATSCI_176_Project_Data.xlsx")
 test_data = test_data = pd.read_csv("mp_battery_test_data.csv")

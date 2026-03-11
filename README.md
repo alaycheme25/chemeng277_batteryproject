@@ -9,7 +9,7 @@ Our training datasets consists of the following features: max_delta_volume, aver
 Our testing data composes of DFT-derived features: max delta volume, average voltage, gravimetric capacity, stability discharge, material density, formation energy per atom, energy bandgap, and lattice constants ('a', 'b', 'c').
 
 ## Setup
-Our machine-learning model is trained on data from [Materials Project](https://next-gen.materialsproject.org/), so you are not required to obtain your own data. However, the model requires certain packages to be installed to function properly. Additional instructions for using the data scrapers and building your own datasets can be found in [Link Text](#Customization)
+Our machine-learning model is trained on data from [Materials Project](https://next-gen.materialsproject.org/), so you are not required to obtain your own data. However, the model requires certain packages to be installed to function properly. Additional instructions for using the data scrapers and building your own datasets can be found in [Customization](#Customization)
 
 To bulk install them all, download `requirements.txt` and open terminal to the folder in which it is located:
 ```

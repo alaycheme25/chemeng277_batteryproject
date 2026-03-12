@@ -50,7 +50,7 @@ test_data = test_data = pd.read_csv("mp_battery_test_data.csv")
 
 Run `machine_learning.ipynb` to:
 - Clean training data by removing all nan, empty, or invalid samples. Subsequently, normalizes remaining samples.
-- Trains our Ridge, ElasticNet, and XG-Boost models.
+- Trains our Ridge, ElasticNet, and XGBoost models.
 - Evaluates models by comparing $R^2$ values, mean average error, and the mean standard error from training dataset.
 - Applies trained models to test dataset and returns predicted gravimetric energy densities as well as feature weights and model evaluation metrics from test dataset.
 ## Customization
@@ -73,4 +73,5 @@ For inquiries regarding the project or bugs in our code, feel free to email us a
 - Nandagopal Pradeep Kumar, nandu02@stanford.edu
 - Allen Qiang, aqiang@stanford.edu
 - Alay Shah, alayshah@stanford.edu
+
 Additionally, don't hestitate to open up issues for this repository!

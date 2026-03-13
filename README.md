@@ -26,7 +26,7 @@ conda install -c conda-forge numpy, matplotlib, pandas, pymatgen, scikit-learn, 
 `mp_battery_training_data.xlsx`
 
 Training data is obtained from the [Materials Project](https://next-gen.materialsproject.org/) by running 
-`Download_from_MP_API_updated.ipynb`. The first 6 columns are for battery categorization via working ion, elements, formula charge, etc. Columns 7-14 are scraped from Materials Project and are available features for performance estimation. An additional three columns corresponding to the lattice constants are added to the training dataset, which are obtained from the structure column.
+`Train_and_test_data_collection_and_processing.ipynb` from the `Dataprocessing` folder. The first 6 columns are for battery categorization via working ion, elements, formula charge, etc. Columns 7-14 are scraped from Materials Project and are available features for performance estimation. An additional three columns corresponding to the lattice constants are added to the training dataset, which are obtained from the structure column.
 
 The final training dataset consists of the following features: 'max_delta_volume', 'average_voltage', 'capacity_grav', 'stability_discharge', 'material_density', 'formation_energy_per_atom', 'band_gap', 'a', 'b', 'c'.
 
@@ -37,7 +37,7 @@ The testing dataset is obtained by splicing together gravimetric capacity, gravi
 
 ## Training and using the model
 Model training and testing occur in `machine_learning.ipynb`. 
-Before running, confirm the following lines of code in cell $2$ are present for the program to access the [training data](#Training data) and the [testing data](#Testing data) on your device:
+Before running, confirm the following lines of code in cell $2$ are present for the program to access the [training data](#Training-data) and the [testing data](#Testing-data) on your device:
 ```
 pdata = pd.read_excel("mp_battery_training_data.xlsx")
 test_data = test_data = pd.read_csv("mp_battery_test_data.csv")
@@ -46,13 +46,13 @@ test_data = test_data = pd.read_csv("mp_battery_test_data.csv")
 
 Run `machine_learning.ipynb` to:
 - Clean training data by removing all NaN, empty, or invalid samples. Normalize the data before training.
-- Trains our Ridge, ElasticNet, and XGBoost models.
-- Evaluates models by comparing $R^2$ values, mean average error, and the mean standard error from the training dataset.
-- Applies trained models to the test dataset and returns predicted gravimetric energy densities as well as feature weights and model evaluation metrics from the test dataset.
+- Train our Ridge, ElasticNet, and XGBoost models.
+- Evaluate models by comparing $R^2$ values, mean average error, and the mean standard error from the training dataset.
+- Apply trained models to the test dataset and returns predicted gravimetric energy densities as well as feature weights and model evaluation metrics from the test dataset.
 ## Customization
 
 ### Changing what datasets to use for training 
-To change what datasets are used to train the models, change `Download_from_MP_API_updated.ipynb` to scrape different data from Materials Project. To ensure proper functionality of `Download_from_MP_API_updated.ipynb`, please change the following variable definition in cell 1 to your API key:
+To change what datasets are used to train the models, change `Train_and_test_data_collection_and_processing.ipynb` from the `Dataprocessing` folder to scrape different data from Materials Project. To ensure proper functionality of `Train_and_test_data_collection_and_processing.ipynb`, please change the following variable definition in cell 1 to your API key:
 
 ````
 API_KEY = "YOUR API KEY"

@@ -2,11 +2,7 @@
 
 The global effort to reduce greenhouse gas emissions relies on research for better energy storage options. Batteries that store electrical energy are especially important, as green power sources like solar or wind may not be generating electricity 100% of the time. Therefore, optimizing battery performance is key to transitioning towards green power.
 
-This project uses Ridge and ElasticNet regression in addition to XGBoost to identify and predict the effective gravimetric energy density (GED) of various battery electrodes. The data was obtained from the Materials Project [Materials Project](https://next-gen.materialsproject.org/) database using the mp-api Python package and filtered to include the materials that have Li, Na, Mg, or Ca as the working ion. The model is trained to predict the absolute gravimetric energy density for proposed battery materials. 
-
-Our training datasets consists of the following features: max_delta_volume, average_voltage, capacity_grav, stability_discharge, material_density, formation_energy_per_atom, band_gap, lattice constants ('a', 'b', 'c'). The data collected had a few more features, which were eliminated due to direct correlation to GED, unavailability in the testing dataset, or because of changes made to the project direction.
-
-Our testing data comprises Density Functional Theory (DFT)-derived fundamental physical features from the Materials Project database and a few battery performance indicators derived from the work by [Moses, I.A. et al](https://www.sciencedirect.com/science/article/pii/S0378775322009570). These features are max_delta_volume, average_voltage, capacity_grav, stability_discharge, material_density, formation_energy_per_atom, band_gap, and lattice constants ('a', 'b', 'c').
+This project uses Ridge and ElasticNet regression in addition to XGBoost to identify and predict the effective gravimetric energy density (GED) of various battery electrodes. The training data was obtained from the [Materials Project](https://next-gen.materialsproject.org/) database using the mp-api Python package and filtered to include the materials that have Li, Na, Mg, or Ca as the working ion. The model is trained to predict the absolute gravimetric energy density for proposed battery materials. 
 
 ## Setup
 Our machine-learning model is trained on data from [Materials Project](https://next-gen.materialsproject.org/), so you are not required to obtain your own data. However, the model requires certain packages to be installed to function properly. Additional instructions for using the data scrapers and building your own datasets can be found in [Customization](#Customization)
@@ -17,17 +13,17 @@ pip install -r requirements.txt
 ```
 or if you don't want to download `requirements.txt`:
 ```
-pip install numpy, matplotlib, pandas, paretoset, pymatgen, scikit-learn, scipy, sympy, mp_api, xgboost
+pip install numpy, matplotlib, pandas, pymatgen, scikit-learn, scipy, sympy, mp_api, xgboost
 ```
 
 For conda users, run:
 ```
-conda install -c conda-forge numpy, matplotlib, pandas, paretoset, pymatgen, scikit-learn, scipy, sympy, mp_api, xgboost
+conda install -c conda-forge numpy, matplotlib, pandas, pymatgen, scikit-learn, scipy, sympy, mp_api, xgboost
 ```
 
 ## Usage
 ### Training data
-`MATSCI_176_Project_Data.xlsx`
+`mp_battery_training_data.xlsx`
 
 Training data is obtained from the [Materials Project](https://next-gen.materialsproject.org/) by running 
 `Download_from_MP_API_updated.ipynb`. The first 6 columns are for battery categorization via working ion, elements, formula charge, etc. Columns 7-14 are scraped from Materials Project and are available features for performance estimation. An additional three columns corresponding to the lattice constants are added to the training dataset, which are obtained from the structure column.
@@ -43,7 +39,7 @@ The testing dataset is obtained by splicing together gravimetric capacity, gravi
 Model training and testing occur in `machine_learning.ipynb`. 
 Before running, confirm the following lines of code in cell $2$ are present for the program to access the [training data](#Training data) and the [testing data](#Testing data) on your device:
 ```
-pdata = pd.read_excel("MATSCI_176_Project_Data.xlsx")
+pdata = pd.read_excel("mp_battery_training_data.xlsx")
 test_data = test_data = pd.read_csv("mp_battery_test_data.csv")
 ```
 

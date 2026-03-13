@@ -5,7 +5,7 @@ The global effort to reduce greenhouse gas emissions relies on research for bett
 This project uses Ridge and ElasticNet regression in addition to XGBoost to identify and predict the effective gravimetric energy density (GED) of various battery electrodes. The training data was obtained from the [Materials Project](https://next-gen.materialsproject.org/) database using the mp-api Python package and filtered to include the materials that have Li, Na, Mg, or Ca as the working ion. The model is trained to predict the absolute gravimetric energy density for proposed battery materials. 
 
 ## Setup
-Our machine-learning model is trained on data from [Materials Project](https://next-gen.materialsproject.org/), so you are not required to obtain your own data. However, the model requires certain packages to be installed to function properly. Additional instructions for using the data scrapers and building your own datasets can be found in [Customization](#Customization)
+Our machine-learning model is trained on data from [Materials Project](https://next-gen.materialsproject.org/), so you are not required to obtain your own data. However, the model requires certain packages to be installed to function properly. Additional instructions for using the data scrapers and building your own datasets can be found in [Customization](#Customization).
 
 To bulk install them all, download `requirements.txt` and open terminal to the folder in which it is located:
 ```

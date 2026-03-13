@@ -1,12 +1,12 @@
-# A Physics-Informed Machine Learning-Framework for Predicting Performance in Solid-State Batteries
+# A Physics-Informed Machine Learning Framework for Predicting Performance of Battery Electrodes
 
-The global effort to reduce global emissions relies on the research for better energy storage options. Batteries which store electrical energy are especially important, as green power sources like solar or wind may not be generating electricity 100% of the time. Therefore, optimizing battery performance is key to transitioning towards green power.
+The global effort to reduce greenhouse gas emissions relies on research for better energy storage options. Batteries that store electrical energy are especially important, as green power sources like solar or wind may not be generating electricity 100% of the time. Therefore, optimizing battery performance is key to transitioning towards green power.
 
-This project uses Ridge and Elasticnet regression in addition to XG-Boost to identify and predict the effective gravimetric energy density (GED) of solid-state batteries. The data was obtained from Materials Project [Materials Project](https://next-gen.materialsproject.org/) database using the api.client Python package and is filtered to include the materials that have Li, Na, Mg, and Ca as a working ion. The model is trained to predict the absolute gravimetric energy density for proposed battery materials. 
+This project uses Ridge and ElasticNet regression in addition to XGBoost to identify and predict the effective gravimetric energy density (GED) of various battery electrodes. The data was obtained from the Materials Project [Materials Project](https://next-gen.materialsproject.org/) database using the mp-api Python package and filtered to include the materials that have Li, Na, Mg, Ag, or Ca as the working ion. The model is trained to predict the absolute gravimetric energy density for proposed battery materials. 
 
-Our training datasets consists of the following features: max_delta_volume, average_voltage, capacity_grav, stability_discharge, material_density, formation_energy_per_atom, band_gap, lattice constants ('a', 'b', 'c'). The input dataset has the following features dropped to avoid direct correlation with gravimetric energy density: battery working ion cost per kWh, volumetric energy density, gravitational energy, electrode density, stability charge, volumetric energy, and volumetric capacity.
+Our training datasets consists of the following features: max_delta_volume, average_voltage, capacity_grav, stability_discharge, material_density, formation_energy_per_atom, band_gap, lattice constants ('a', 'b', 'c'). The data collected had a few more features, which were eliminated due to direct correlation to GED, unavailability in the testing dataset, or because of changes made to the project direction.
 
-Our testing data composes of DFT-derived features: max delta volume, average voltage, gravimetric capacity, stability discharge, material density, formation energy per atom, energy bandgap, and lattice constants ('a', 'b', 'c').
+Our testing data comprises Density Functional Theory (DFT)-derived fundamental physical features from the Materials Project database and a few battery performance indicators derived from the work by [Moses, I.A. et al](https://www.sciencedirect.com/science/article/pii/S0378775322009570). These features are max_delta_volume, average_voltage, capacity_grav, stability_discharge, material_density, formation_energy_per_atom, band_gap, and lattice constants ('a', 'b', 'c').
 
 ## Setup
 Our machine-learning model is trained on data from [Materials Project](https://next-gen.materialsproject.org/), so you are not required to obtain your own data. However, the model requires certain packages to be installed to function properly. Additional instructions for using the data scrapers and building your own datasets can be found in [Customization](#Customization)
@@ -30,17 +30,17 @@ conda install -c conda-forge numpy, matplotlib, pandas, paretoset, pymatgen, sci
 `MATSCI_176_Project_Data.xlsx`
 
 Training data is obtained from the [Materials Project](https://next-gen.materialsproject.org/) by running 
-`Download_from_MP_API_updated.ipynb`. The first 6 columns are for battery categorization via working ion, elements, formula charge, etc. Columns 7-14 are scraped from Materials Projeect and are available features for performance estimation. An additional three columns corresponding to the lattice constants are added to the training dataset, which are obtained from the structure column.
+`Download_from_MP_API_updated.ipynb`. The first 6 columns are for battery categorization via working ion, elements, formula charge, etc. Columns 7-14 are scraped from Materials Project and are available features for performance estimation. An additional three columns corresponding to the lattice constants are added to the training dataset, which are obtained from the structure column.
 
 The final training dataset consists of the following features: 'max_delta_volume', 'average_voltage', 'capacity_grav', 'stability_discharge', 'material_density', 'formation_energy_per_atom', 'band_gap', 'a', 'b', 'c'.
 
 ### Testing data 
 `mp_battery_test_data.csv`
 
-Testing dataset is obtained by splicing together gravimetric capacity, gravimetric energy density, voltage, and maximum change in volume data from [Moses, I.A. et al](https://www.sciencedirect.com/science/article/pii/S0378775322009570) and the Materials Project database. A subset of the paper's samples were chosen to use as testing data. The remaining features present in the training data were obtained by scraping the features from Materials Project using the chosen samples' Materials Project ID. The true absolute gravimetric energy densities are stored for model evaluation and are unsued for testing.
+The testing dataset is obtained by splicing together gravimetric capacity, gravimetric energy density, voltage, and maximum change in volume data from [Moses, I.A. et al](https://www.sciencedirect.com/science/article/pii/S0378775322009570) and the Materials Project database. A subset of the paper's samples were chosen to use as testing data. The remaining features present in the training data were obtained by scraping the features from Materials Project using the chosen samples' Materials Project ID. The true absolute gravimetric energy densities are stored for model evaluation and are unused for testing.
 
 ## Training and using the model
-Model training and testing occurs in `machine_learning.ipynb`. 
+Model training and testing occur in `machine_learning.ipynb`. 
 Before running, confirm the following lines of code in cell $2$ are present for the program to access the [training data](#Training data) and the [testing data](#Testing data) on your device:
 ```
 pdata = pd.read_excel("MATSCI_176_Project_Data.xlsx")
@@ -49,10 +49,10 @@ test_data = test_data = pd.read_csv("mp_battery_test_data.csv")
 
 
 Run `machine_learning.ipynb` to:
-- Clean training data by removing all nan, empty, or invalid samples. Subsequently, normalizes remaining samples.
+- Clean training data by removing all NaN, empty, or invalid samples. Normalize the data before training.
 - Trains our Ridge, ElasticNet, and XGBoost models.
-- Evaluates models by comparing $R^2$ values, mean average error, and the mean standard error from training dataset.
-- Applies trained models to test dataset and returns predicted gravimetric energy densities as well as feature weights and model evaluation metrics from test dataset.
+- Evaluates models by comparing $R^2$ values, mean average error, and the mean standard error from the training dataset.
+- Applies trained models to the test dataset and returns predicted gravimetric energy densities as well as feature weights and model evaluation metrics from the test dataset.
 ## Customization
 
 ### Changing what datasets to use for training 
@@ -74,4 +74,4 @@ For inquiries regarding the project or bugs in our code, feel free to email us a
 - Allen Qiang, aqiang@stanford.edu
 - Alay Shah, alayshah@stanford.edu
 
-Additionally, don't hestitate to open up issues for this repository!
+Additionally, don't hesitate to open up issues for this repository!
